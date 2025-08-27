@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://bpqhjqgwwj07x"]
+[gd_scene load_steps=9 format=4 uid="uid://bpqhjqgwwj07x"]
 
 [ext_resource type="PackedScene" uid="uid://dh6tl83g8brgp" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://coikksquyishs" path="res://assets/Tileset-1.png (1).png" id="1_yqjtg"]
@@ -40,12 +40,50 @@ texture = ExtResource("1_yqjtg")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lnu2h")
 
+[sub_resource type="Animation" id="Animation_lnu2h"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(119, 40), Vector2(203, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(124, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iywne"]
+_data = {
+&"RESET": SubResource("Animation_lbhrr"),
+&"move": SubResource("Animation_lnu2h")
+}
+
 [node name="Game" type="Node2D"]
 
 [node name="Layer1" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(145, 82)
-tile_map_data = PackedByteArray("AAD//wEAAQABAAAAAAD+/wEAAQABAAAAAAD9/wEAAQABAAAAAAAAAAEAAQABAAAAAAABAAEAAQABAAAAAAACAAEAAQABAAAAAAD8/wEAAQAAAAQAAAD8/wAAAQACAAEAAAD8////AQACAAEAAAD8//7/AQACAAEAAAD8//3/AQACAAAAAAD7//3/AQABAAAAAAD6//3/AQABAAAAAAD7/wAAAQABAAEAAAD6/wAAAQABAAEAAAD5/wAAAQABAAEAAAD4/wAAAQABAAEAAAD4/wEAAQABAAEAAAD3/wEAAQABAAEAAAD3/wAAAQABAAEAAAD5/wEAAQABAAEAAAD6/wEAAQABAAEAAAD7/wEAAQABAAEAAAALAAAAAQACAAEAAAD3//3/AQABAAAAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD3//7/AQABAAEAAAD3////AQABAAEAAAD4//7/AQABAAEAAAD4////AQABAAEAAAD5//7/AQABAAEAAAD5////AQABAAEAAAD6//7/AQABAAEAAAD6////AQABAAEAAAD7//7/AQABAAEAAAD7////AQABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD//wEAAQABAAAAAAD+/wEAAQABAAAAAAD9/wEAAQABAAAAAAAAAAEAAQABAAAAAAABAAEAAQABAAAAAAACAAEAAQABAAAAAAD8/wEAAQAAAAQAAAD8/wAAAQACAAEAAAD8////AQACAAEAAAD8//7/AQACAAEAAAD8//3/AQACAAAAAAD7//3/AQABAAAAAAD6//3/AQABAAAAAAD7/wAAAQABAAEAAAD6/wAAAQABAAEAAAD5/wAAAQABAAEAAAD4/wAAAQABAAEAAAD4/wEAAQABAAEAAAD3/wEAAQABAAEAAAD3/wAAAQABAAEAAAD5/wEAAQABAAEAAAD6/wEAAQABAAEAAAD7/wEAAQABAAEAAAD3//3/AQABAAAAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD3//7/AQABAAEAAAD3////AQABAAEAAAD4//7/AQABAAEAAAD4////AQABAAEAAAD5//7/AQABAAEAAAD5////AQABAAEAAAD6//7/AQABAAEAAAD6////AQABAAEAAAD7//7/AQABAAEAAAD7////AQABAAEAAAADAAEAAQABAAAAAAAEAAEAAQABAAAAAAAFAAEAAQABAAQAAAAFAP7/AQAAAAEAAAAFAP//AQAAAAEAAAAFAAAAAQAAAAEAAAAFAP3/AQAAAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAAGAP7/AQABAAEAAAAGAP//AQABAAEAAAAGAAAAAQABAAEAAAAGAAEAAQABAAEAAAAHAP7/AQABAAEAAAAHAP//AQABAAEAAAAHAAAAAQABAAEAAAAHAAEAAQABAAEAAAAIAP7/AQABAAEAAAAIAP//AQABAAEAAAAIAAAAAQABAAEAAAAIAAEAAQABAAEAAAAJAP7/AQABAAEAAAAJAP//AQABAAEAAAAJAAAAAQABAAEAAAAJAAEAAQABAAEAAAAKAP7/AQABAAEAAAAKAP//AQABAAEAAAAKAAAAAQABAAEAAAAKAAEAAQABAAEAAAA=")
 tile_set = SubResource("TileSet_lbhrr")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
@@ -57,4 +95,9 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="Platform" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(50, 12)
+position = Vector2(124, 40)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
+libraries = {
+&"": SubResource("AnimationLibrary_iywne")
+}
