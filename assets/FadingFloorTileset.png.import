@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coikksquyishs"
-path="res://.godot/imported/Tileset-1.png (1).png-e11e318ff6fbfec49ca1619b34e5af69.ctex"
+uid="uid://cida6juecc62k"
+path="res://.godot/imported/FadingFloorTileset.png-47cb19247cd21f2816844bca37a6ee5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tileset-1.png (1).png"
-dest_files=["res://.godot/imported/Tileset-1.png (1).png-e11e318ff6fbfec49ca1619b34e5af69.ctex"]
+source_file="res://assets/FadingFloorTileset.png"
+dest_files=["res://.godot/imported/FadingFloorTileset.png-47cb19247cd21f2816844bca37a6ee5f.ctex"]
 
 [params]
 
