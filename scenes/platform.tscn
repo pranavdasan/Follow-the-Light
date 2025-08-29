@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://coikksquyishs" path="res://assets/FloorTileset.png" id="1_ba0x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nlgqw"]
-size = Vector2(40, 11)
+size = Vector2(36, 11)
 
 [node name="Platform" type="AnimatableBody2D"]
 

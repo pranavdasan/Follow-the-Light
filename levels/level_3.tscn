@@ -1,0 +1,168 @@
+[gd_scene load_steps=15 format=4 uid="uid://dn7bhirmg4jyr"]
+
+[ext_resource type="Texture2D" uid="uid://coikksquyishs" path="res://assets/FloorTileset.png" id="1_lfnxh"]
+[ext_resource type="Texture2D" uid="uid://cida6juecc62k" path="res://assets/FadingFloorTileset.png" id="2_ofchu"]
+[ext_resource type="PackedScene" uid="uid://bkipaorivsciv" path="res://scenes/kill_zone.tscn" id="3_jq78i"]
+[ext_resource type="FontFile" uid="uid://dioonvas17dsb" path="res://assets/PixelifySans.ttf" id="4_lsnkt"]
+[ext_resource type="PackedScene" uid="uid://cc6llmyeqvx5b" path="res://scenes/player.tscn" id="6_0unm6"]
+[ext_resource type="PackedScene" uid="uid://b0bldbxokux50" path="res://scenes/platform.tscn" id="7_q42ux"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
+texture = ExtResource("1_lfnxh")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -7.07294, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
+texture = ExtResource("2_ofchu")
+0:0/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lbhrr"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_lnu2h")
+sources/4 = SubResource("TileSetAtlasSource_p57ef")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+distance = -2.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+
+[sub_resource type="Animation" id="Animation_at1ld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(169, -74)]
+}
+
+[sub_resource type="Animation" id="Animation_dfjjl"]
+resource_name = "move"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(210, -74), Vector2(303, -74)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sd18g"]
+_data = {
+&"RESET": SubResource("Animation_at1ld"),
+&"move": SubResource("Animation_dfjjl")
+}
+
+[node name="Level2" type="Node2D"]
+
+[node name="Layer1" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(148, -1)
+tile_map_data = PackedByteArray("AAD8/wEAAQABAAEAAAD8/wAAAQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAEAAAD7//3/AQABAAAAAAD6//3/AQABAAAAAAD7/wAAAQABAAEAAAD6/wAAAQABAAEAAAD5/wAAAQABAAEAAAD4/wAAAQABAAEAAAD4/wEAAQABAAEAAAD3/wEAAQABAAEAAAD5/wEAAQABAAEAAAD6/wEAAQABAAEAAAD7/wEAAQABAAEAAAD3//3/AQABAAAAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD3//7/AQABAAEAAAD3////AQABAAEAAAD4//7/AQABAAEAAAD4////AQABAAEAAAD5//7/AQABAAEAAAD5////AQABAAEAAAD6//7/AQABAAEAAAD6////AQABAAEAAAD7//7/AQABAAEAAAD7////AQABAAEAAAADAP7/BAAAAAAAAAADAP//BAAAAAEAAAAEAP7/BAAAAAAAAAAEAP//BAAAAAEAAAAFAP7/BAAAAAAAAAAFAP//BAAAAAEAAAAGAP7/BAAAAAAAAAAGAP//BAAAAAEAAAAHAP7/BAAAAAAAAAAHAP//BAAAAAEAAAAIAP7/BAAAAAAAAAAIAP//BAAAAAEAAAAJAP7/BAAAAAAAAAAJAP//BAAAAAEAAAAKAP7/BAAAAAAAAAAKAP//BAAAAAEAAAALAP7/BAAAAAAAAAALAP//BAAAAAEAAAAMAP7/BAAAAAAAAAAMAP//BAAAAAEAAAANAP7/BAAAAAAAAAANAP//BAAAAAEAAAD9//3/AQABAAEAAAD9//7/AQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD9/wEAAQABAAEAAAD+//3/AQABAAEAAAD+//7/AQABAAEAAAD+////AQABAAEAAAD+/wAAAQABAAEAAAD+/wEAAQABAAEAAAAOAP3/AQABAAAAAAAOAP7/AQABAAEAAAAOAP//AQABAAEAAAAPAP3/AQABAAAAAAAPAP7/AQABAAEAAAAPAP//AQABAAEAAAAQAP3/AQABAAAAAAAQAP7/AQABAAEAAAAQAP//AQABAAEAAAARAP3/AQABAAAAAAARAP7/AQABAAEAAAARAP//AQABAAEAAAASAP3/AQABAAAAAAASAP7/AQABAAEAAAASAP//AQABAAEAAAATAP3/AQABAAAAAAATAP7/AQABAAEAAAATAP//AQABAAEAAAAUAP3/AQABAAAAAAAUAP7/AQABAAEAAAAUAP//AQABAAEAAAAVAP3/AQABAAAAAAAVAP7/AQABAAEAAAAVAP//AQABAAEAAAAWAP3/AQABAAAAAAAWAP7/AQABAAEAAAAWAP//AQABAAEAAAAXAP3/AQABAAAAAAAXAP7/AQABAAEAAAAXAP//AQABAAEAAAAYAP3/AQABAAAAAAAYAP7/AQABAAEAAAAYAP//AQABAAEAAAABAAEABAAAAAEAAAACAP7/BAAAAAAAAAACAP//BAAAAAEAAAACAAAABAAAAAEAAAACAAEABAAAAAEAAAABAAAABAAAAAEAAAAAAP//BAAAAAEAAAABAP7/BAAAAAAAAAABAP//BAAAAAEAAAD3/wAAAQABAAEAAAAAAP7/BAAAAAAAAAAAAAAABAAAAAEAAAAAAAEABAAAAAEAAAD///7/BAAAAAAAAAD//wEABAAAAAEAAAD/////BAAAAAEAAAD//wAABAAAAAEAAAD8//3/AQABAAQAAAD9//z/AQABAAQAAAD+//v/AQABAAQAAAD+//z/AQABAAEAAAD8//z/AQAAAAAAAAD9//v/AQAAAAAAAAD+//r/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_lbhrr")
+
+[node name="World Boundaries" type="StaticBody2D" parent="."]
+position = Vector2(1, -114)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World Boundaries"]
+position = Vector2(544, 61)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundaries"]
+position = Vector2(3, 31)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="KillZone" parent="." instance=ExtResource("3_jq78i")]
+position = Vector2(163, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(-91, 8)
+shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Game Text" type="Node" parent="."]
+
+[node name="Label2" type="Label" parent="Game Text"]
+offset_left = 226.0
+offset_top = -125.0
+offset_right = 305.0
+offset_bottom = -91.0
+theme_override_fonts/font = ExtResource("4_lsnkt")
+theme_override_font_sizes/font_size = 24
+text = "Level 3"
+
+[node name="Label" type="Label" parent="Game Text"]
+offset_left = 391.0
+offset_top = -119.0
+offset_right = 540.0
+offset_bottom = -65.0
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("4_lsnkt")
+theme_override_font_sizes/font_size = 24
+text = "New levels
+ coming soon!"
+
+[node name="Player" parent="." instance=ExtResource("6_0unm6")]
+visibility_layer = 2
+z_index = 5
+position = Vector2(22, -84)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-100, 27)
+zoom = Vector2(5, 5)
+limit_left = 3
+limit_right = 545
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Platform" parent="." instance=ExtResource("7_q42ux")]
+position = Vector2(169, -74)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
+libraries = {
+&"": SubResource("AnimationLibrary_sd18g")
+}
+autoplay = "move"

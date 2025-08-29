@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dh6tl83g8brgp"]
+[gd_scene load_steps=17 format=3 uid="uid://cc6llmyeqvx5b"]
 
 [ext_resource type="Script" uid="uid://cxlvhhkwqaaug" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bxldtx1n04hlm" path="res://assets/GraySlimeSpritesheet.png" id="2_g2els"]
@@ -109,6 +109,7 @@ animations = [{
 radius = 23.5
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(-1, 1)
 collision_layer = 2
 script = ExtResource("1_g2els")
 

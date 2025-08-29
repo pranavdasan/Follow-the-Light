@@ -20,17 +20,17 @@ func _physics_process(delta: float) -> void:
 	
 	# Sprite flip
 	if direction > 0:
-		animated_sprite.flip_h = true
-	elif direction < 0:
 		animated_sprite.flip_h = false
+	elif direction < 0:
+		animated_sprite.flip_h = true
 		
-	# Idle animation
-	if direction == 0:
-		animated_sprite.play("idle")
-	else: 
-		animated_sprite.play("walk")
-	
-	if !is_on_floor():
+	# Play animations
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite.play("idle")
+		else: 
+			animated_sprite.play("walk")
+	else:
 		animated_sprite.play("jump")
 
 	if direction:
